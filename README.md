@@ -1,16 +1,59 @@
-# React + Vite
+<h1 align="center">Interactive 3D Developer Portfolio</h1>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<p align="center">
+  <strong>A modern, WebGL-powered personal portfolio built to showcase full-stack engineering skills through interactive 3D web experiences.</strong>
+</p>
 
-Currently, two official plugins are available:
+<p align="center">
+  <img src="assets/Screenshot.png" alt="3D Portfolio Career World Preview" width="800"/>
+</p>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🚀 Overview
 
-## React Compiler
+This project is not just a static site; it is a fully interactive 3D environment built to demonstrate advanced front-end capabilities. It combines React's component-based architecture with Three.js rendering to create an immersive, asset-driven user experience ("Career World").
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### ✨ Key Features
+- **Interactive 3D Environment:** Built custom WebGL scenes using `@react-three/fiber` and `@react-three/drei`.
+- **Fluid UI Animations:** Integrated GSAP for smooth, high-performance scroll and state animations.
+- **Optimized Rendering:** Leveraged Vite for lightning-fast HMR during development and heavily optimized asset loading for production.
+- **Component-Driven Design:** Scalable React architecture separating the 3D canvas logic from standard UI overlays.
 
-## Expanding the ESLint configuration
+## 🛠️ Tech Stack
+- **Framework:** React + Vite
+- **3D Rendering:** Three.js, React Three Fiber, React Three Drei
+- **Animation:** GSAP (GreenSock)
+- **Deployment:** [Insert Vercel, Netlify, or GitHub Pages]
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 💻 Running the Project Locally
+
+To explore the codebase and run the 3D environment on your local machine:
+
+1. **Clone the repository:**
+   ```bash
+git clone https://github.com/nourabouali/YOUR-REPO-NAME.git
+```
+2. **Install dependencies:**
+   ```bash
+npm install
+```
+3. **Start the development server:**
+   ```bash
+npm run dev
+```
+
+Open the URL shown in the terminal (typically `http://localhost:5173`).
+
+## 📁 Project Structure
+- `src/` — main application source code
+- `src/components/` — 3D scene components, UI panels, and portfolio cards
+- `assets/` — images, 3D models, and other media assets
+- `public/` — static files served by Vite
+
+## 🚀 Scripts
+- `npm run dev` — start development server
+- `npm run build` — create optimized production build
+- `npm run preview` — preview production build locally
+- `npm run lint` — run ESLint across the project
+
+## 💡 Notes
+This portfolio is designed to be an interactive showcase of web and 3D engineering skills. Replace the placeholder demo link and repository URL with your live deployment and repo details.
