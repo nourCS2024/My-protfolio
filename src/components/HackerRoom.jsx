@@ -22,5 +22,3 @@ export default function HackerRoom() {
     </group>
   )
 }
-
-useGLTF.preload('/assets/hacker_room_low_poly.glb')

@@ -1,13 +1,15 @@
 /* ===== RESET & GLOBAL ===== */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
 :root {
-  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
 
   --color-bg: #0a0a0f;
   --color-surface: rgba(15, 15, 25, 0.85);
@@ -21,15 +23,35 @@
   --color-link: #7b9cff;
 }
 
-html, body, #root {
+/* Prevent pull-to-refresh and elastic scroll on mobile */
+html {
+  overscroll-behavior: none;
+  -webkit-text-size-adjust: 100%;
+}
+
+html,
+body,
+#root {
   width: 100%;
   height: 100%;
+  /* Allow scroll on the body so mobile browsers don't freeze;
+     the canvas is fixed so it won't actually scroll */
   overflow: hidden;
   background: var(--color-bg);
   font-family: var(--font-sans);
   color: var(--color-text);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* Remove any tap highlight on iOS */
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Full-screen canvas — prevent default touch behavior so the
+   joystick and interact button get clean touch events */
+canvas {
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 /* ===== LOADING SCREEN ===== */
@@ -43,7 +65,9 @@ html, body, #root {
   justify-content: center;
   background: var(--color-bg);
   gap: 24px;
-  transition: opacity 0.6s ease, visibility 0.6s ease;
+  transition:
+    opacity 0.6s ease,
+    visibility 0.6s ease;
 }
 
 .loading-screen.hidden {
@@ -69,7 +93,9 @@ html, body, #root {
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* ===== CONTROLS HINT ===== */
@@ -91,6 +117,8 @@ html, body, #root {
   color: var(--color-text-dim);
   pointer-events: none;
   animation: fadeInUp 0.8s ease 1s both;
+  /* Don't let this overlap the joystick area */
+  max-width: calc(100vw - 200px);
 }
 
 .controls-hint kbd {
@@ -110,8 +138,14 @@ html, body, #root {
 }
 
 @keyframes fadeInUp {
-  from { opacity: 0; transform: translateX(-50%) translateY(16px); }
-  to { opacity: 1; transform: translateX(-50%) translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
 }
 
 /* ===== ZONE INDICATOR ===== */
@@ -122,7 +156,11 @@ html, body, #root {
   transform: translateX(-50%);
   z-index: 100;
   padding: 10px 28px;
-  background: linear-gradient(135deg, rgba(108, 99, 255, 0.2), rgba(0, 214, 143, 0.15));
+  background: linear-gradient(
+    135deg,
+    rgba(108, 99, 255, 0.2),
+    rgba(0, 214, 143, 0.15)
+  );
   border: 1px solid var(--color-glass-border);
   border-radius: 12px;
   backdrop-filter: blur(16px);
@@ -133,17 +171,28 @@ html, body, #root {
 }
 
 @keyframes pulseGlow {
-  0%, 100% { box-shadow: 0 0 12px var(--color-accent-glow); }
-  50% { box-shadow: 0 0 24px var(--color-accent-glow), 0 0 48px rgba(108, 99, 255, 0.15); }
+  0%,
+  100% {
+    box-shadow: 0 0 12px var(--color-accent-glow);
+  }
+  50% {
+    box-shadow:
+      0 0 24px var(--color-accent-glow),
+      0 0 48px rgba(108, 99, 255, 0.15);
+  }
 }
 
 /* ===== HOLOGRAPHIC UI CARD ===== */
 .holo-card {
-  width: 520px;
-  max-height: 540px;
+  width: min(520px, calc(100vw - 32px));
+  max-height: min(540px, calc(100dvh - 80px));
   overflow-y: auto;
-  padding: 32px;
-  background: linear-gradient(145deg, rgba(12, 12, 30, 0.92), rgba(20, 20, 50, 0.88));
+  padding: 28px 24px;
+  background: linear-gradient(
+    145deg,
+    rgba(12, 12, 30, 0.92),
+    rgba(20, 20, 50, 0.88)
+  );
   border: 1px solid var(--color-glass-border);
   border-radius: 20px;
   backdrop-filter: blur(24px);
@@ -154,6 +203,7 @@ html, body, #root {
   font-family: var(--font-sans);
   color: var(--color-text);
   animation: holoAppear 0.5s ease;
+  -webkit-overflow-scrolling: touch;
 }
 
 .holo-card::-webkit-scrollbar {
@@ -168,12 +218,18 @@ html, body, #root {
 }
 
 @keyframes holoAppear {
-  from { opacity: 0; transform: scale(0.92) translateY(12px); }
-  to { opacity: 1; transform: scale(1) translateY(0); }
+  from {
+    opacity: 0;
+    transform: scale(0.92) translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
 }
 
 .holo-card h1 {
-  font-size: 1.5rem;
+  font-size: clamp(1.2rem, 4vw, 1.5rem);
   font-weight: 700;
   margin-bottom: 6px;
   background: linear-gradient(135deg, #6c63ff, #00d68f);
@@ -183,21 +239,21 @@ html, body, #root {
 }
 
 .holo-card h2 {
-  font-size: 1.15rem;
+  font-size: 1.05rem;
   font-weight: 600;
-  margin: 18px 0 8px;
+  margin: 16px 0 8px;
   color: var(--color-accent);
 }
 
 .holo-card p {
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   line-height: 1.65;
   color: var(--color-text-dim);
   margin-bottom: 8px;
 }
 
 .holo-card .greeting {
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: var(--color-text);
   margin-bottom: 14px;
   font-weight: 500;
@@ -207,7 +263,7 @@ html, body, #root {
   display: flex;
   align-items: flex-start;
   gap: 8px;
-  font-size: 0.88rem;
+  font-size: 0.85rem;
   color: var(--color-text-dim);
   margin-bottom: 8px;
   line-height: 1.5;
@@ -245,14 +301,14 @@ html, body, #root {
 .holo-card .features-list li {
   position: relative;
   padding-left: 18px;
-  font-size: 0.85rem;
+  font-size: 0.83rem;
   color: var(--color-text-dim);
   margin-bottom: 6px;
   line-height: 1.5;
 }
 
 .holo-card .features-list li::before {
-  content: '▸';
+  content: "▸";
   position: absolute;
   left: 0;
   color: var(--color-success);
@@ -275,7 +331,7 @@ html, body, #root {
   align-items: center;
   gap: 6px;
   margin-top: 12px;
-  padding: 8px 18px;
+  padding: 10px 18px;
   font-size: 0.85rem;
   font-weight: 600;
   color: white;
@@ -283,7 +339,11 @@ html, body, #root {
   border: none;
   border-radius: 8px;
   text-decoration: none;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .holo-card .github-link:hover {
@@ -300,7 +360,7 @@ html, body, #root {
   gap: 8px;
   width: 100%;
   margin-top: 20px;
-  padding: 12px 0;
+  padding: 14px 0;
   font-family: var(--font-sans);
   font-size: 0.9rem;
   font-weight: 600;
@@ -311,6 +371,10 @@ html, body, #root {
   cursor: pointer;
   transition: all 0.25s ease;
   letter-spacing: 0.02em;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  /* Make it easier to tap on mobile */
+  min-height: 48px;
 }
 
 .exit-btn:hover {
@@ -337,4 +401,37 @@ html, body, #root {
 .transition-overlay.active {
   opacity: 1;
   pointer-events: all;
+}
+
+/* ===== MOBILE RESPONSIVE ===== */
+
+/* Safe area insets for notch/home-bar devices */
+@supports (padding: max(0px)) {
+  .holo-card {
+    padding-bottom: max(28px, env(safe-area-inset-bottom));
+  }
+}
+
+@media (max-width: 480px) {
+  .holo-card {
+    padding: 20px 16px;
+    border-radius: 16px;
+  }
+
+  .holo-card h2 {
+    font-size: 0.95rem;
+  }
+
+  .controls-hint {
+    /* Hide on very small screens — use virtual joystick instead */
+    display: none;
+  }
+}
+
+/* Landscape mobile — make card shorter so it doesn't overflow */
+@media (max-height: 500px) and (orientation: landscape) {
+  .holo-card {
+    max-height: calc(100dvh - 32px);
+    padding: 16px 16px;
+  }
 }

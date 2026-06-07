@@ -1,10 +1,10 @@
-import { useEffect, useRef, useCallback } from 'react'
-import { RigidBody, MeshCollider } from '@react-three/rapier'
-import Island from './Island'
-import HackerRoom from './HackerRoom'
-import PlayerController from './PlayerController'
-import InteractionZones from './InteractionZones'
-import CameraController from './CameraController'
+import { useEffect, useRef, useCallback } from "react";
+import { RigidBody, MeshCollider } from "@react-three/rapier";
+import Island from "./Island";
+import HackerRoom from "./HackerRoom";
+import PlayerController from "./PlayerController";
+import InteractionZones from "./InteractionZones";
+import CameraController from "./CameraController";
 
 export default function Scene({
   onLoaded,
@@ -20,20 +20,25 @@ export default function Scene({
 }) {
   // Signal loaded after first render
   useEffect(() => {
-    const timer = setTimeout(() => onLoaded(), 500)
-    return () => clearTimeout(timer)
-  }, [onLoaded])
+    const timer = setTimeout(() => onLoaded(), 500);
+    return () => clearTimeout(timer);
+  }, [onLoaded]);
 
   // Listen for Enter key to activate zone
   useEffect(() => {
     const handleKeyDown = (e) => {
-      if (e.code === 'Enter' && nearZone && nearZone !== 'Welcome' && !activeZone) {
-        onZoneEnter(nearZone)
+      if (
+        e.code === "Enter" &&
+        nearZone &&
+        nearZone !== "Welcome" &&
+        !activeZone
+      ) {
+        onZoneEnter(nearZone);
       }
-    }
-    window.addEventListener('keydown', handleKeyDown)
-    return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [nearZone, activeZone, onZoneEnter])
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [nearZone, activeZone, onZoneEnter]);
 
   return (
     <>
@@ -52,15 +57,13 @@ export default function Scene({
         shadow-camera-near={0.5}
         shadow-camera-far={80}
       />
-      <hemisphereLight
-        args={['#87ceeb', '#362d59', 0.4]}
-      />
+      <hemisphereLight args={["#87ceeb", "#362d59", 0.4]} />
 
       {/* Fog */}
-      <fog attach="fog" args={['#1a1a2e', 30, 80]} />
+      <fog attach="fog" args={["#1a1a2e", 30, 80]} />
 
       {/* Sky color */}
-      <color attach="background" args={['#1a1a2e']} />
+      <color attach="background" args={["#1a1a2e"]} />
 
       {/* Island with trimesh collider */}
       {/* Island with trimesh collider */}
@@ -68,7 +71,7 @@ export default function Scene({
         <Island />
       </RigidBody>
       {/* Hacker Room (far below) */}
-      <HackerRoom />
+      {activeZone && <HackerRoom />}
 
       {/* Player */}
       <PlayerController
@@ -93,5 +96,5 @@ export default function Scene({
         cameraRef={cameraRef}
       />
     </>
-  )
+  );
 }

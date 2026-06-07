@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="nourGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <!-- Using your interaction zone colors! -->
+      <stop offset="0%" stop-color="#6c63ff"/>
+      <stop offset="100%" stop-color="#00d68f"/>
+    </linearGradient>
+  </defs>
+  <!-- Sleek dark background with rounded luxurious corners -->
+  <rect width="512" height="512" rx="120" fill="#111118"/>
+  <!-- Minimalist 'N' -->
+  <path d="M150 380 V150 L360 380 V150" stroke="url(#nourGrad)" stroke-width="45" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

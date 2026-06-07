@@ -2,13 +2,48 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+
+    <!-- Mobile-first viewport: no scaling, allow full viewport height on iOS -->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+    />
+
+    <!-- iOS full-screen PWA support -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="mobile-web-app-capable" content="yes" />
+
+    <!-- Prevent tap delay on mobile -->
+    <meta name="format-detection" content="telephone=no" />
+
     <title>Nour Abou Ali — 3D Developer Portfolio</title>
-    <meta name="description" content="Interactive 3D portfolio of Nour Abou Ali, a passionate Full-Stack Developer. Explore projects, skills, and experience in an immersive 3D environment." />
+    <meta
+      name="description"
+      content="Interactive 3D portfolio of Nour Abou Ali, a passionate Full-Stack Developer. Explore projects, skills, and experience in an immersive 3D environment."
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* Prevent rubber-band scroll on iOS before React mounts */
+      html,
+      body {
+        overscroll-behavior: none;
+        overflow: hidden;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+      }
+    </style>
   </head>
   <body>
     <div id="root"></div>

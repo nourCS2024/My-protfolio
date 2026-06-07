@@ -89,7 +89,7 @@ function WelcomeMarker({ position, isNear }) {
   return (
     <group position={[position[0], position[1], position[2]]}>
       {/* The 3D stone sign model */}
-      <primitive object={clonedScene} scale={2.0} />
+      <primitive object={clonedScene} scale={2.0} rotation={[Math.PI / 2, 0, 0]} />
 
 
 
@@ -169,6 +169,5 @@ export default function InteractionZones({ playerRef, nearZone, setNearZone }) {
   )
 }
 
-export { INTERACTION_ZONES }
 
-useGLTF.preload('/assets/lit_welcome_sign_planter_prop.glb')
+export { INTERACTION_ZONES }
